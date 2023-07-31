@@ -1,23 +1,15 @@
 ﻿using CsvHelper.Configuration;
 using CsvHelper;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AirportTicketBooking
 {
-    internal class FlightFileImporter
+    public static class FlightFileImporter
     {
-        List<Flight> flights = new List<Flight>();
-        public List<Flight> ImportFlightsFromCsv(string filePath)
+       static List<Flight> flights = new List<Flight>();
+        public static List<Flight> ImportFlightsFromCsv(string filePath)
         {
-
-
             List<Flight> flights = new List<Flight>();
-
 
             try
             {
@@ -33,11 +25,6 @@ namespace AirportTicketBooking
             }
 
             return flights;
-
-
-
         }
-
-
     }
 }
