@@ -63,6 +63,7 @@ if(choice == 1)
                 {
                     maxPrice = tempMaxPrice;
                 }
+
                 Console.Write("Class (Economy, Business, FirstClass) - leave empty for any class: ");
                 string flightClassInput = Console.ReadLine();
                 FlightClass? flightClass = null;
@@ -79,13 +80,35 @@ if(choice == 1)
                     }
                 }
 
-                List<Flight> availableFlights = bookingSystem.SearchFlights(maxPrice, null, null, null, null, null, flightClass);
+                // Adding filters
+                Console.Write("Enter Departure Country (leave empty for any country): ");
+                string departureCountry = Console.ReadLine();
+
+                Console.Write("Enter Destination Country (leave empty for any country): ");
+                string destinationCountry = Console.ReadLine();
+
+                Console.Write("Enter Departure Date (leave empty for any date): ");
+                DateTime? departureDate = null;
+                DateTime tempDepartureDate;
+                if (DateTime.TryParse(Console.ReadLine(), out tempDepartureDate))
+                {
+                    departureDate = tempDepartureDate;
+                }
+
+                Console.Write("Enter Departure Airport (leave empty for any airport): ");
+                string departureAirport = Console.ReadLine();
+
+                Console.Write("Enter Arrival Airport (leave empty for any airport): ");
+                string arrivalAirport = Console.ReadLine();
+
+                List<Flight> availableFlights = bookingSystem.SearchFlights(maxPrice, departureCountry, destinationCountry, departureDate, departureAirport, arrivalAirport, flightClass);
 
                 Console.WriteLine("\nAvailable Flights:");
                 foreach (var flight in availableFlights)
                 {
                     Console.WriteLine($"Flight Code: {flight.FlightNum}, Class: {flight.Class}, Price: {flight.Price}, Departure Date: {flight.DepartureDate}");
                 }
+
                 break;
 
             case 3:
