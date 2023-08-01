@@ -16,7 +16,6 @@ namespace AirportTicketBooking
         public void BookFlight(Passenger passenger, Flight flight)
         {
           passenger.BookedFlights.Add(flight);
-          Console.WriteLine("Flight successfully booked!");
         }
 
         public void ViewBookings(Passenger passenger)

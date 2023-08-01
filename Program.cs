@@ -65,10 +65,6 @@ if(choice == 1)
                 }
                 Console.Write("Class (Economy, Business, FirstClass) - leave empty for any class: ");
                 string flightClassInput = Console.ReadLine();
-                if (flightClassInput == "Economy")
-                {
-
-                }
                 FlightClass? flightClass = null;
                 if (!string.IsNullOrEmpty(flightClassInput))
                 {
