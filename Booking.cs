@@ -15,7 +15,16 @@ namespace AirportTicketBooking
 
         public void BookFlight(Passenger passenger, Flight flight)
         {
-          passenger.BookedFlights.Add(flight);
+            if (flight.NumberOfSeats != 0)
+            {
+                passenger.BookedFlights.Add(flight);
+                flight.NumberOfSeats = flight.NumberOfSeats - 1;
+                Console.WriteLine("Flight successfully booked!");
+            }
+            else
+            {
+                Console.WriteLine("Sorry their is no avalible seats!");
+            }
         }
 
         public void ViewBookings(Passenger passenger)
@@ -59,6 +68,7 @@ namespace AirportTicketBooking
         public void CancelBooking(Passenger passenger, Flight flight)
         {
             passenger.BookedFlights.Remove(flight);
+            flight.NumberOfSeats = flight.NumberOfSeats + 1;
             Console.WriteLine("Booking canceled successfully!");
         }
 

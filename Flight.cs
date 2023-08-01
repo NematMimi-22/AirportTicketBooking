@@ -11,6 +11,7 @@ namespace AirportTicketBooking
             FirstClass=2,
         }
         public string FlightNum { get; set; }
+        public int NumberOfSeats { get; set; }
         public string DepartureAirport { get; set; }
         public string ArrivalAirport { get; set; }
         public string DepartureCountry { get; set; }

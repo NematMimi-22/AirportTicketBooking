@@ -46,7 +46,6 @@ if(choice == 1)
                 if (selectedFlight != null)
                 {
                     bookingSystem.BookFlight(passenger, selectedFlight);
-                    Console.WriteLine("Flight successfully booked!");
                 }
                 else
                 {
@@ -79,8 +78,6 @@ if(choice == 1)
                         Console.WriteLine("Invalid class input. Ignoring class filter.");
                     }
                 }
-
-                // Adding filters
                 Console.Write("Enter Departure Country (leave empty for any country): ");
                 string departureCountry = Console.ReadLine();
 
@@ -118,8 +115,20 @@ if(choice == 1)
                     Console.WriteLine($"Flight Code: {booking.FlightNum}, Class: {booking.Class}, Price: {booking.Price}, Departure Date: {booking.DepartureDate}");
                 }
                 break;
-
             case 4:
+                Console.WriteLine("Enter the Flight Number of the flight to cancel the booking:");
+                string flightNumToCancel = Console.ReadLine();
+                Flight flightToCancel = bookingSystem.flights.FirstOrDefault(flight => flight.FlightNum == flightNumToCancel);
+                if (flightToCancel != null)
+                {
+                    bookingSystem.CancelBooking(passenger, flightToCancel);
+                }
+                else
+                {
+                    Console.WriteLine("Flight not found. Unable to cancel booking.");
+                }
+                break;
+            case 5:
                 exitMenu = true;
                 break;
 
