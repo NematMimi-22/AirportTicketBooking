@@ -4,7 +4,7 @@
     {
         public Manager GetOrCreateManager(string name, string email, string password)
         {
-            Manager existingManager = Program.managers.FirstOrDefault(p => p.Name == name && p.Email == email && p.GetPassword == password);
+            var existingManager = Program.managers.FirstOrDefault(p => p.Name == name && p.Email == email && p.Password == password);
             if (existingManager != null)
             {
                 Console.WriteLine($"Welcome back, {existingManager.Name}!");
@@ -17,7 +17,7 @@
                     Name = name,
                     Email = email,
                 };
-                newManager.SetPassword(password);
+                newManager.Password = password;
                 Program.managers.Add(newManager);
                 Console.WriteLine($"Welcome, {newManager.Name}!");
                 return newManager;

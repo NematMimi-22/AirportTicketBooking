@@ -1,21 +1,21 @@
 ﻿using AirportTicketBooking.Enum;
 namespace AirportTicketBooking.Repositories
 {
-    public class BookingRepository : IBookingRepository
+    public class BookingRepository 
     {
         public void LoadFlightsFromCsv(string filepath)
         {
             var ImportFromFile = new FlightFileImporter(filepath);
             Booking.Flights = ImportFromFile.ImportFlightsFromCsv();
         }
-        public BookedStatus BookFlight(Passenger passenger, Flight flight, Booking bookingSystem)
+        public BookingStatus BookFlight(Passenger passenger, Flight flight, Booking bookingSystem)
         {
             if (flight.NumberOfSeats > 0)
             {
                 if (passenger.BookedFlights.Contains(flight))
                 {
                     Console.WriteLine("You have already booked this flight.");
-                    return BookedStatus.FailedBooking;
+                    return BookingStatus.FailedBooking;
                 }
                 passenger.BookedFlights.Add(flight);
                 var bookingDetails = new BookingDetails
@@ -34,12 +34,12 @@ namespace AirportTicketBooking.Repositories
                 bookingSystem.Bookings.Add(bookingDetails);
                 flight.NumberOfSeats = flight.NumberOfSeats - 1;
                 Console.WriteLine("Flight successfully booked!");
-                return BookedStatus.SuccessfullyBooked;
+                return BookingStatus.SuccessfullyBooked;
             }
             else
             {
                 Console.WriteLine("Sorry their is no avalible seats!");
-                return BookedStatus.FailedBooking;
+                return BookingStatus.FailedBooking;
             }
         }
         public List<Flight> SearchFlights(
@@ -75,7 +75,7 @@ namespace AirportTicketBooking.Repositories
             {
                 bookingSystem.Bookings.Remove(bookingDetails);
             }
-            flight.NumberOfSeats = flight.NumberOfSeats + 1;
+            flight.NumberOfSeats = flight.NumberOfSeats ++;
             Console.WriteLine("Booking canceled successfully!");
         }
         public void ModifyBooking(Flight flight, BookingRepository Bookingrepository, Passenger passenger)
@@ -83,13 +83,13 @@ namespace AirportTicketBooking.Repositories
             Console.WriteLine($"Current Booking Details for Flight Code: {flight.FlightNum}");
             Console.WriteLine($"Class: {flight.Class}, Price: {flight.Price}, Departure Date: {flight.DepartureDate}");
             Console.WriteLine("\nDo you want to search for available flights on a specific date? (y/n): ");
-            string searchOption = Console.ReadLine();
+            var searchOption = Console.ReadLine();
             if (searchOption.ToLower() == "y")
             {
                 Console.Write("Enter the new departure date (MM/dd/yyyy): ");
                 if (DateTime.TryParse(Console.ReadLine(), out DateTime inputDate))
                 {
-                    List<Flight> availableFlights = Bookingrepository.SearchFlights(flight.Price, flight.DepartureCountry, flight.DestinationCountry, inputDate, flight.DepartureAirport, flight.ArrivalAirport, flight.Class);
+                    var availableFlights = Bookingrepository.SearchFlights(flight.Price, flight.DepartureCountry, flight.DestinationCountry, inputDate, flight.DepartureAirport, flight.ArrivalAirport, flight.Class);
 
                     if (availableFlights.Any())
                     {
@@ -100,7 +100,7 @@ namespace AirportTicketBooking.Repositories
                         }
 
                         Console.Write("Enter the Flight Code of the desired flight: ");
-                        string selectedFlightCode = Console.ReadLine();
+                        var selectedFlightCode = Console.ReadLine();
                         var selectedFlight = availableFlights.FirstOrDefault(flight => flight.FlightNum == selectedFlightCode);
 
                         if (selectedFlight != null)

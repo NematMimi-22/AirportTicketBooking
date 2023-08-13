@@ -4,7 +4,7 @@
     {
         public Passenger GetOrCreatePassenger(string name, string email)
         {
-            Passenger existingPassenger = Program.passengers.FirstOrDefault(p => p.Name == name && p.Email == email);
+            var existingPassenger = Program.passengers.FirstOrDefault(p => p.Name == name && p.Email == email);
             if (existingPassenger != null)
             {
                 Console.WriteLine($"Welcome back, {existingPassenger.Name}!");

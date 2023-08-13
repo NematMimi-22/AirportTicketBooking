@@ -10,18 +10,18 @@ public class Program
     {
         Console.WriteLine("Welcome to Airport Ticket Booking system");
         Console.Write("Enter the path of the CSV file: ");
-        string filePath = Console.ReadLine();
+        var filePath = Console.ReadLine();
         var Bookingrepository = new BookingRepository();
-        Booking bookingSystem = new Booking(Bookingrepository);
+        var bookingSystem = new Booking();
         Bookingrepository.LoadFlightsFromCsv(filePath);
-        bool exitSystem = false;
+        var exitSystem = false;
         while (!exitSystem)
         {
             Console.WriteLine("\nWhich type of user are you?");
             Console.WriteLine("1. Passenger");
             Console.WriteLine("2. Manager");
             Console.WriteLine("3. Exit");
-            int choice = int.Parse(Console.ReadLine());
+            var choice = int.Parse(Console.ReadLine());
 
             switch (choice)
             {
@@ -53,9 +53,9 @@ public class Program
             Console.Write("Password: ");
             string password = Console.ReadLine();
             Manager manager = null;
-            ManagerRepository managerRepository = new ManagerRepository();
+            var managerRepository = new ManagerRepository();
             manager = managerRepository.GetOrCreateManager(name, email, password);
-            bool exitMenu = false;
+            var exitMenu = false;
             while (!exitMenu)
             {
                 Console.WriteLine("\nManager Menu:");
@@ -117,7 +117,7 @@ public class Program
             Passenger passenger = null;
             PassengerRepository passengerRepository = new PassengerRepository();
             passenger = passengerRepository.GetOrCreatePassenger(name, email);
-            bool exitMenu = false;
+            var exitMenu = false;
             while (!exitMenu)
             {
                 Console.WriteLine("\nPassenger Menu:");
