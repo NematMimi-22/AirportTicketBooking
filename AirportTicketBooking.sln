@@ -5,7 +5,9 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirportTicketBooking", "AirportTicketBooking.csproj", "{B4EE62FC-9F9E-45D3-95BF-20D55F71BF02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportTicketBooking.Test", "..\AirportTicketBooking.Test\AirportTicketBooking.Test.csproj", "{FB5846A7-CFDC-401A-9B0F-56E895B5C57C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirportTicketBooking.Test", "..\AirportTicketBooking.Test\AirportTicketBooking.Test.csproj", "{FB5846A7-CFDC-401A-9B0F-56E895B5C57C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{2ECA3DFC-DAAF-42D7-ACF4-E7DB1FB548D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FB5846A7-CFDC-401A-9B0F-56E895B5C57C} = {2ECA3DFC-DAAF-42D7-ACF4-E7DB1FB548D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {044ABD47-B0D4-46B4-8FDA-D7AA2910738D}
