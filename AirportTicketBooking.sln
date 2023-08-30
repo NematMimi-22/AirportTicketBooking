@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportTicketBooking", "AirportTicketBooking.csproj", "{B4EE62FC-9F9E-45D3-95BF-20D55F71BF02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirportTicketBooking", "AirportTicketBooking.csproj", "{B4EE62FC-9F9E-45D3-95BF-20D55F71BF02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportTicketBooking.Test", "..\AirportTicketBooking.Test\AirportTicketBooking.Test.csproj", "{FB5846A7-CFDC-401A-9B0F-56E895B5C57C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B4EE62FC-9F9E-45D3-95BF-20D55F71BF02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4EE62FC-9F9E-45D3-95BF-20D55F71BF02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4EE62FC-9F9E-45D3-95BF-20D55F71BF02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB5846A7-CFDC-401A-9B0F-56E895B5C57C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB5846A7-CFDC-401A-9B0F-56E895B5C57C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB5846A7-CFDC-401A-9B0F-56E895B5C57C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB5846A7-CFDC-401A-9B0F-56E895B5C57C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
