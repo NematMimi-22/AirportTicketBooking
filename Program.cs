@@ -136,11 +136,11 @@ public class Program
                         Console.WriteLine("\nAvailable Flights:");
                         foreach (var flight in Bookingrepository.SearchFlights(null, null, null, null, null, null, null))
                         {
-                            Console.WriteLine($"Flight Code: {flight.Flightnum}, Class: {flight.Class}, Price: {flight.Price}, Departure Date: {flight.DepartureDate} {flight.NumberOfSeats}");
+                            Console.WriteLine($"Flight Code: {flight.FlightNum}, Class: {flight.Class}, Price: {flight.Price}, Departure Date: {flight.DepartureDate} {flight.NumberOfSeats}");
                         }
                         Console.WriteLine("\nEnter the Flight number to book the flight:");
                         string flightnumToBook = Console.ReadLine();
-                        var selectedFlight = Booking.Flights.Find(flight => flight.Flightnum == flightnumToBook);
+                        var selectedFlight = Booking.Flights.Find(flight => flight.FlightNum == flightnumToBook);
                         if (selectedFlight != null)
                         {
                             Bookingrepository.BookFlight(passenger, selectedFlight, bookingSystem);
@@ -213,7 +213,7 @@ public class Program
                         Console.WriteLine("\nAvailable Flights:");
                         foreach (var flight in availableFlights)
                         {
-                            Console.WriteLine($"Flight Code: {flight.Flightnum}, Class: {flight.Class}, Price: {flight.Price}, Departure Date: {flight.DepartureDate}");
+                            Console.WriteLine($"Flight Code: {flight.FlightNum}, Class: {flight.Class}, Price: {flight.Price}, Departure Date: {flight.DepartureDate}");
                         }
 
                         break;
@@ -222,14 +222,14 @@ public class Program
                         Console.WriteLine("\nYour Booked Flights:");
                         foreach (var booking in passenger.BookedFlights)
                         {
-                            Console.WriteLine($"Flight Code: {booking.Flightnum}, Class: {booking.Class}, Price: {booking.Price}, Departure Date: {booking.DepartureDate},{booking.NumberOfSeats}");
+                            Console.WriteLine($"Flight Code: {booking.FlightNum}, Class: {booking.Class}, Price: {booking.Price}, Departure Date: {booking.DepartureDate},{booking.NumberOfSeats}");
                         }
                         break;
 
                     case 4:
                         Console.WriteLine("Enter the Flight Number of the flight to cancel the booking:");
                         string flightNumToCancel = Console.ReadLine();
-                        var flightToCancel = passenger.BookedFlights.FirstOrDefault(flight => flight.Flightnum == flightNumToCancel);
+                        var flightToCancel = passenger.BookedFlights.FirstOrDefault(flight => flight.FlightNum == flightNumToCancel);
                         if (flightToCancel != null)
                         {
                             Bookingrepository.CancelBooking(passenger, flightToCancel, bookingSystem);
@@ -243,7 +243,7 @@ public class Program
                     case 5:
                         Console.WriteLine("Enter the Flight Number of the flight to modify the booking:");
                         string flightNumToCancel1 = Console.ReadLine();
-                        var flightToModify = passenger.BookedFlights.FirstOrDefault(flight => flight.Flightnum == flightNumToCancel1);
+                        var flightToModify = passenger.BookedFlights.FirstOrDefault(flight => flight.FlightNum == flightNumToCancel1);
                         if (flightToModify != null)
                         {
                             Bookingrepository.ModifyBooking(flightToModify, Bookingrepository, passenger);

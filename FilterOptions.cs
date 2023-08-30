@@ -4,7 +4,7 @@ namespace AirportTicketBooking
 
     public class FilterOptions
     {
-        public string?  Flightnum { get; set; }
+        public string?  FlightNum { get; set; }
         public decimal? Price { get; set; }
         public string? DepartureCountry { get; set; }
         public string? DestinationCountry { get; set; }

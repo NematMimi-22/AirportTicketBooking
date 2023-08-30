@@ -5,7 +5,7 @@ namespace AirportTicketBooking
 {
     public class Flight
     {
-        public string Flightnum { get; set; }
+        public string FlightNum { get; set; }
         public int NumberOfSeats { get; set; }
         public string DepartureAirport { get; set; }
         public string ArrivalAirport { get; set; }

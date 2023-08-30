@@ -20,7 +20,7 @@ namespace AirportTicketBooking.Repositories
                 passenger.BookedFlights.Add(flight);
                 var bookingDetails = new BookingDetails
                 {
-                    Flightnum = flight.Flightnum,
+                    FlightNum = flight.FlightNum,
                     NumberOfSeats = flight.NumberOfSeats,
                     DepartureAirport = flight.DepartureAirport,
                     ArrivalAirport = flight.ArrivalAirport,
@@ -65,7 +65,7 @@ namespace AirportTicketBooking.Repositories
         public void CancelBooking(Passenger passenger, Flight flight, Booking bookingSystem)
         {
             passenger.BookedFlights.Remove(flight);
-            var bookingDetails = bookingSystem.Bookings.Find(b => b.PassengerId == passenger.Id && b.Flightnum == flight.Flightnum
+            var bookingDetails = bookingSystem.Bookings.Find(b => b.PassengerId == passenger.Id && b.FlightNum == flight.FlightNum
             && b.DepartureDate == flight.DepartureDate && b.Class == flight.Class && b.Price == flight.Price
             && b.DestinationCountry == flight.DestinationCountry
             && b.NumberOfSeats == flight.NumberOfSeats
@@ -80,7 +80,7 @@ namespace AirportTicketBooking.Repositories
         }
         public void ModifyBooking(Flight flight, BookingRepository Bookingrepository, Passenger passenger)
         {
-            Console.WriteLine($"Current Booking Details for Flight Code: {flight.Flightnum}");
+            Console.WriteLine($"Current Booking Details for Flight Code: {flight.FlightNum}");
             Console.WriteLine($"Class: {flight.Class}, Price: {flight.Price}, Departure Date: {flight.DepartureDate}");
             Console.WriteLine("\nDo you want to search for available flights on a specific date? (y/n): ");
             var searchOption = Console.ReadLine();
@@ -96,12 +96,12 @@ namespace AirportTicketBooking.Repositories
                         Console.WriteLine("\nAvailable Flights:");
                         foreach (var availableFlight in availableFlights)
                         {
-                            Console.WriteLine($"Flight Code: {availableFlight.Flightnum}, Class: {availableFlight.Class}, Price: {availableFlight.Price}, Departure Date: {availableFlight.DepartureDate}");
+                            Console.WriteLine($"Flight Code: {availableFlight.FlightNum}, Class: {availableFlight.Class}, Price: {availableFlight.Price}, Departure Date: {availableFlight.DepartureDate}");
                         }
 
                         Console.Write("Enter the Flight Code of the desired flight: ");
                         var selectedFlightCode = Console.ReadLine();
-                        var selectedFlight = availableFlights.FirstOrDefault(flight => flight.Flightnum == selectedFlightCode);
+                        var selectedFlight = availableFlights.FirstOrDefault(flight => flight.FlightNum == selectedFlightCode);
 
                         if (selectedFlight != null)
                         {
