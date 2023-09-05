@@ -55,7 +55,7 @@ namespace AirportTicketBookingTest.Flights_Tests
         }
 
         [Fact]
-        public void TestSearchFlights_FilterByMaxPrice_ReturnFlightWithMaxPrice()
+        public void SearchFlights_FilterByMaxPrice_ReturnsFlightsWithMaxPrice()
         {
             // Act
             var filteredFlights = _bookingRepository.SearchFlights(maxPrice: 150, null, null, null, null, null, null);
@@ -66,7 +66,7 @@ namespace AirportTicketBookingTest.Flights_Tests
         }
 
         [Fact]
-        public void TestSearchFlights_FilterByDepartureCountry()
+        public void SearchFlights_FilterByDepartureCountry_ReturnsFlightsFromUSA()
         {
             // Act
             var filteredFlights = _bookingRepository.SearchFlights(null, "USA", null, null, null, null, null);
@@ -76,7 +76,7 @@ namespace AirportTicketBookingTest.Flights_Tests
         }
 
         [Fact]
-        public void TestSearchFlights_FilterByDestinationCountry()
+        public void SearchFlights_FilterByDestinationCountry_ReturnsFlightsToUSA()
         {
             // Act
             var filteredFlights = _bookingRepository.SearchFlights(null, null, "USA", null, null, null, null);
@@ -86,7 +86,7 @@ namespace AirportTicketBookingTest.Flights_Tests
         }
 
         [Fact]
-        public void TestSearchFlights_FilterByDepartureAirport()
+        public void SearchFlights_FilterByDepartureAirport_ReturnsFlightsDepartingFromUSA()
         {
             // Act
             var filteredFlights = _bookingRepository.SearchFlights(null, null, null, null, "USA", null, null);
@@ -96,7 +96,7 @@ namespace AirportTicketBookingTest.Flights_Tests
         }
 
         [Fact]
-        public void TestSearchFlights_FilterByFlightClass()
+        public void SearchFlights_FilterByFlightClass_ReturnsEconomyClassFlights()
         {
             // Act
             var filteredFlights = _bookingRepository.SearchFlights(null, null, null, null, null, null, FlightClass.Economy);
@@ -107,7 +107,7 @@ namespace AirportTicketBookingTest.Flights_Tests
         }
 
         [Fact]
-        public void TestSearchFlights_FilterByDepartureDate()
+        public void SearchFlights_FilterByDepartureDate_ReturnsFlightsWithDepartureDate()
         {
             // Act
             var filteredFlights = _bookingRepository.SearchFlights(null, null, null, DateTime.Now.Date.AddDays(1), null, null, null);

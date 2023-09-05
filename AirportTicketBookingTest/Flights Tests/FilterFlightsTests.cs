@@ -41,7 +41,7 @@ namespace AirportTicketBookingTest.Flights_Tests
         };
 
         [Fact]
-        public void FilterBookings_FilterBookingByFlightNum_SingleResult()
+        public void FilterBookings_FiltersByFlightNum()
         {
             // Arrange
             var bookingRepository = new BookingRepository();
@@ -56,7 +56,7 @@ namespace AirportTicketBookingTest.Flights_Tests
         }
 
         [Fact]
-        public void Test_FilterBookings_Filters()
+        public void FilterBookings_FiltersByArrivalAirport()
         {
             // Arrange
             var bookingRepository = new BookingRepository();

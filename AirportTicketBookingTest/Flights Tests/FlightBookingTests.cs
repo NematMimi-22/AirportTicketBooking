@@ -7,7 +7,7 @@ namespace AirportTicketBookingTest
     public class FlightBookingTests
     {
         [Fact]
-        public void BookFlight_SuccessfulBooking_ReturnsSuccessfullyBookedStatus()
+        public void BookFlight_SuccessfullyBooked_WhenOneSeatIsAvailable()
         {
             // Arrange
             var passenger = new Passenger();
@@ -25,7 +25,7 @@ namespace AirportTicketBookingTest
         }
 
         [Fact]
-        public void BookFlight_AlreadyBooked_ReturnsFailedBookingStatus()
+        public void BookFlight_FailedBooking_WhenFlightIsAlreadyBooked()
         {
             // Arrange
             var passenger = new Passenger();
@@ -42,7 +42,7 @@ namespace AirportTicketBookingTest
         }
 
         [Fact]
-        public void BookFlight_NoAvailableSeats_ReturnsFailedBookingStatus()
+        public void BookFlight_FailedBooking_WhenNoAvailableSeats()
         {
             // Arrange
             var passenger = new Passenger();
