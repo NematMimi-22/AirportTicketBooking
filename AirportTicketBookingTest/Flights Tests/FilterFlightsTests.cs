@@ -1,22 +1,14 @@
 ﻿using AirportTicketBooking;
 using AirportTicketBooking.Enum;
 using AirportTicketBooking.Repositories;
-using Moq;
-
+using Xunit;
 namespace AirportTicketBookingTest.Flights_Tests
 {
     public class FilterFlightsTests
     {
-        [Theory]
-        [InlineData("Flightnum", "FL456")]
-        [InlineData("NumberOfSeats", 200)]
-        [InlineData("DepartureAirport", "LHR")]
-        public void Test_FilterBookings_MultipleFilters(string filterPropertyName, object filterValue)
+        private Booking bookingList = new Booking
         {
-            // Arrange
-            var bookingList = new Booking
-            {
-                Bookings = new List<BookingDetails>
+            Bookings = new List<BookingDetails>
                 {
                     new BookingDetails
                     {
@@ -31,18 +23,51 @@ namespace AirportTicketBookingTest.Flights_Tests
                         Class = FlightClass.Economy,
                         Price = 150
                     }
+                    ,
+                        new BookingDetails
+                        {
+                            PassengerId = Guid.Parse("11225544-5566-7788-99AA-BBCCDDEEFF00"),
+                            FlightNum = "FL458",
+                            NumberOfSeats = 300,
+                            DepartureAirport = "LHR",
+                            ArrivalAirport = "JFK",
+                            DepartureCountry = "UK",
+                            DestinationCountry = "USA",
+                            DepartureDate = DateTime.Now.Date.AddDays(8),
+                            Class = FlightClass.Business,
+                            Price = 50
+                        }
                 }
-            };
+        };
 
+        [Fact]
+        public void FilterBookings_FilterBookingByFlightNum_SingleResult()
+        {
+            // Arrange
             var bookingRepository = new BookingRepository();
 
             // Act
             var filters = new FilterOptions();
-            filters.GetType().GetProperty(filterPropertyName)?.SetValue(filters, filterValue);
+            filters.FlightNum = "FL456";
             var result = bookingRepository.FilterBookings(filters, bookingList);
 
-            //Assert
-            Assert.NotEmpty(result);
+            // Assert        
+            Assert.All(result, booking => Assert.Equal("FL456", booking.FlightNum));
+        }
+
+        [Fact]
+        public void Test_FilterBookings_Filters()
+        {
+            // Arrange
+            var bookingRepository = new BookingRepository();
+
+            // Act
+            var filters = new FilterOptions();
+            filters.ArrivalAirport = "LHR";
+            var result = bookingRepository.FilterBookings(filters, bookingList);
+
+            // Assert
+            Assert.All(result, booking => Assert.Equal("LHR", booking.DepartureAirport));
         }
     }
 }

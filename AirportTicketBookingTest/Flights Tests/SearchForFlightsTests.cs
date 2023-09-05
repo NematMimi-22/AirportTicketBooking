@@ -1,6 +1,7 @@
 ﻿using AirportTicketBooking;
 using AirportTicketBooking.Enum;
 using AirportTicketBooking.Repositories;
+using Xunit;
 namespace AirportTicketBookingTest.Flights_Tests
 {
     public class SearchForFlightsTests
@@ -54,7 +55,7 @@ namespace AirportTicketBookingTest.Flights_Tests
         }
 
         [Fact]
-        public void TestSearchFlights_FilterByMaxPrice()
+        public void TestSearchFlights_FilterByMaxPrice_ReturnFlightWithMaxPrice()
         {
             // Act
             var filteredFlights = _bookingRepository.SearchFlights(maxPrice: 150, null, null, null, null, null, null);
