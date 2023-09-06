@@ -7,12 +7,12 @@ namespace AirportTicketBookingTest.Flights_Tests
     public class SearchForFlightsTests
     {
         private BookingRepository _bookingRepository;
-        private List<Flight> _mockFlights;
+        private List<Flight> Flights;
 
         public SearchForFlightsTests()
         {
             _bookingRepository = new BookingRepository();
-            _mockFlights = new List<Flight>
+            Flights = new List<Flight>
             {
                 new Flight
             {
@@ -51,7 +51,7 @@ namespace AirportTicketBookingTest.Flights_Tests
                 Price = 200
             }
             };
-            Booking.Flights = _mockFlights;
+            Booking.Flights = Flights;
         }
 
         [Fact]
