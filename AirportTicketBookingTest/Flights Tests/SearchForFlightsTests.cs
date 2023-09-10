@@ -6,51 +6,8 @@ namespace AirportTicketBookingTest.Flights_Tests
 {
     public class SearchForFlightsTests
     {
-        private BookingRepository _bookingRepository;
-        private List<Flight> Flights;
-
         public SearchForFlightsTests()
         {
-            _bookingRepository = new BookingRepository();
-            Flights = new List<Flight>
-            {
-                new Flight
-            {
-                FlightNum = "FL456",
-                NumberOfSeats = 200,
-                DepartureAirport = "LHR",
-                ArrivalAirport = "JFK",
-                DepartureCountry = "UK",
-                DestinationCountry = "USA",
-                DepartureDate = DateTime.Now.Date.AddDays(2),
-                Class = FlightClass.Economy,
-                Price = 150
-            },
-                new Flight
-            {
-                FlightNum = "FL456",
-                NumberOfSeats = 200,
-                DepartureAirport = "USA",
-                ArrivalAirport = "UK",
-                DepartureCountry = "UK",
-                DestinationCountry = "USA",
-                DepartureDate = DateTime.Now.Date.AddDays(1),
-                Class = FlightClass.Business,
-                Price = 150
-            },
-                new Flight
-            {
-                FlightNum = "FL456",
-                NumberOfSeats = 200,
-                DepartureAirport = "USA",
-                ArrivalAirport = "UK",
-                DepartureCountry = "USA",
-                DestinationCountry = "USA",
-                DepartureDate = DateTime.Now.Date.AddDays(1),
-                Class = FlightClass.Economy,
-                Price = 200
-            }
-            };
             Booking.Flights = Flights;
         }
 
@@ -79,7 +36,7 @@ namespace AirportTicketBookingTest.Flights_Tests
         [InlineData(null, "USA", null, null, null, null, null, 1)]
         [InlineData(null, null, "USA", null, null, null, null, 3)]
         [InlineData(null, null, null, null, "USA", null, null, 2)]
-        [InlineData(null, null, null, null, null, null, FlightClass.Economy, 2)]
+        [InlineData(null, null, null, null, null, null, FlightClass.Economy, 1)]
         public void SearchFlights_ReturnsFilteredFlights(
            double? maxPrice,
            string? departureCountry,
@@ -96,5 +53,46 @@ namespace AirportTicketBookingTest.Flights_Tests
             // Assert
             Assert.Equal(expectedCount, actualfilteredFlightsCount);
         }
+
+        private static BookingRepository _bookingRepository = new BookingRepository();
+        private static List<Flight> Flights = new List<Flight>
+        {
+            new Flight
+            {
+                FlightNum = "FL456",
+                NumberOfSeats = 200,
+                DepartureAirport = "LHR",
+                ArrivalAirport = "JFK",
+                DepartureCountry = "UK",
+                DestinationCountry = "USA",
+                DepartureDate = DateTime.Now.Date.AddDays(2),
+                Class = FlightClass.Economy,
+                Price = 150
+            },
+            new Flight
+            {
+                FlightNum = "FL456",
+                NumberOfSeats = 200,
+                DepartureAirport = "USA",
+                ArrivalAirport = "UK",
+                DepartureCountry = "UK",
+                DestinationCountry = "USA",
+                DepartureDate = DateTime.Now.Date.AddDays(1),
+                Class = FlightClass.Business,
+                Price = 150
+            },
+            new Flight
+            {
+                FlightNum = "FL457",
+                NumberOfSeats = 200,
+                DepartureAirport = "USA",
+                ArrivalAirport = "UK",
+                DepartureCountry = "USA",
+                DestinationCountry = "USA",
+                DepartureDate = DateTime.Now.Date.AddDays(1),
+                Class = FlightClass.Business,
+                Price = 200
+            },
+        };
     }
 }

@@ -6,8 +6,10 @@ namespace AirportTicketBookingTest.Flights_Tests
 {
     public class FilterFlightsTests
     {
-        [Fact]    
+        private static Guid Guid1 = Guid.Parse("11223344-5566-7788-99AA-BBCCDDEEFF00");
+        private static Guid Guid2 = Guid.Parse("11225544-5566-7788-99AA-BBCCDDEEFF00");
 
+        [Fact]    
         public void FilterBookings_FiltersByDate()
         {
             // Arrange
@@ -61,14 +63,14 @@ namespace AirportTicketBookingTest.Flights_Tests
             Assert.NotEmpty(result);
         }
 
-        public static Booking bookingList = new Booking
+        private static Booking bookingList = new Booking
         {
             Bookings = new List<BookingDetails>
                 {
                     new BookingDetails
                     {
 
-                        PassengerId = Guid.Parse("11223344-5566-7788-99AA-BBCCDDEEFF00"),
+                        PassengerId = Guid1,
                         FlightNum = "FL456",
                         NumberOfSeats = 200,
                         DepartureAirport = "LHR",
@@ -81,7 +83,7 @@ namespace AirportTicketBookingTest.Flights_Tests
                     },
                     new BookingDetails
                     {
-                        PassengerId = Guid.Parse("11225544-5566-7788-99AA-BBCCDDEEFF00"),
+                        PassengerId = Guid2,
                         FlightNum = "FL458",
                         NumberOfSeats = 300,
                         DepartureAirport = "LHR",
