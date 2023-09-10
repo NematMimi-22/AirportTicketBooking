@@ -6,9 +6,6 @@ namespace AirportTicketBookingTest.Flights_Tests
 {
     public class FilterFlightsTests
     {
-        private static Guid Guid1 = Guid.Parse("11223344-5566-7788-99AA-BBCCDDEEFF00");
-        private static Guid Guid2 = Guid.Parse("11225544-5566-7788-99AA-BBCCDDEEFF00");
-
         [Fact]    
         public void FilterBookings_FiltersByDate()
         {
@@ -33,12 +30,11 @@ namespace AirportTicketBookingTest.Flights_Tests
 
             // Act
             var filters = new FilterOptions();
-            filters.PassengerId = Guid.Parse("11223344-5566-7788-99AA-BBCCDDEEFF00");
-
+            filters.PassengerId = Guid1;
             var result = bookingRepository.FilterBookings(filters, bookingList);
 
             // Assert        
-            Assert.All(result, booking => Assert.Equal(Guid.Parse("11223344-5566-7788-99AA-BBCCDDEEFF00"), booking.PassengerId));
+            Assert.All(result, booking => Assert.Equal(Guid1, booking.PassengerId));
         }
 
         [Theory]
@@ -63,6 +59,8 @@ namespace AirportTicketBookingTest.Flights_Tests
             Assert.NotEmpty(result);
         }
 
+        private static Guid Guid1 = Guid.Parse("11223344-5566-7788-99AA-BBCCDDEEFF00");
+        private static Guid Guid2 = Guid.Parse("11225544-5566-7788-99AA-BBCCDDEEFF00");
         private static Booking bookingList = new Booking
         {
             Bookings = new List<BookingDetails>
