@@ -4,14 +4,12 @@ namespace AirportTicketBookingTest.Manager_Tests
 {
     public class UserAccountTests
     {
-        [Fact]
-        public void GetOrCreateManager_ExistingManager_ReturnsExistingManager()
+        [Theory]
+        [InlineData("Nemat Mimi", "nematmimi01@gmail.com", "nemat123")]
+        public void GetOrCreateManager_ExistingManager_ReturnsExistingManager(string name, string email,string password)
         {
             // Arrange
             var repository = new ManagerRepository();
-            var name = "Nemat Mimi";
-            var email = "nematmimi01@gmail.com";
-            var password = "nemat123";
 
             // Act
             var ManagerAcount = repository.GetOrCreateManager(name, email, password);
@@ -22,13 +20,12 @@ namespace AirportTicketBookingTest.Manager_Tests
             Assert.Equal(email, ManagerAcount.Email);
         }
 
-        [Fact]
-        public void GetOrCreatePassenger_ExistingPassenger_ReturnsPassenger()
+        [Theory]
+        [InlineData("Nemat Mimi", "nematmimi01@gmail.com")]
+        public void GetOrCreatePassenger_ExistingPassenger_ReturnsPassenger(string name, string email)
         {
             // Arrange
             var repository = new PassengerRepository();
-            var name = "Nemat Mimi";
-            var email = "nematmimi01@gmail.com";
 
             // Act
             var ManagerAcount = repository.GetOrCreatePassenger(name, email);

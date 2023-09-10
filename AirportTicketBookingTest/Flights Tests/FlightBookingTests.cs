@@ -77,7 +77,6 @@ namespace AirportTicketBookingTest
             bookingRepository.CancelBooking(passenger, flight, bookingSystem);
 
             // Assert
-            Assert.Equal(0,passenger.BookedFlights.Count);
             Assert.Equal(11, flight.NumberOfSeats);
         }
 

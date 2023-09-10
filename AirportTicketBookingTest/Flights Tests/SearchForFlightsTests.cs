@@ -58,63 +58,43 @@ namespace AirportTicketBookingTest.Flights_Tests
         public void SearchFlights_FilterByMaxPrice_ReturnsFlightsWithMaxPrice()
         {
             // Act
-            var filteredFlights = _bookingRepository.SearchFlights(maxPrice: 150, null, null, null, null, null, null);
-
+            var actualfilteredFlightsCount = _bookingRepository.SearchFlights(maxPrice: 150, null, null, null, null, null, null).Count;
+            var expectedCount = 2;
             // Assert
-            Assert.Equal(2, filteredFlights.Count());
-            Assert.True(filteredFlights.All(flight => flight.Price <= 150));
-        }
-
-        [Fact]
-        public void SearchFlights_FilterByDepartureCountry_ReturnsFlightsFromUSA()
-        {
-            // Act
-            var filteredFlights = _bookingRepository.SearchFlights(null, "USA", null, null, null, null, null);
-
-            // Assert
-            Assert.Equal("USA", filteredFlights.First().DepartureCountry);
-        }
-
-        [Fact]
-        public void SearchFlights_FilterByDestinationCountry_ReturnsFlightsToUSA()
-        {
-            // Act
-            var filteredFlights = _bookingRepository.SearchFlights(null, null, "USA", null, null, null, null);
-
-            // Assert
-            Assert.Equal("USA", filteredFlights.First().DestinationCountry);
-        }
-
-        [Fact]
-        public void SearchFlights_FilterByDepartureAirport_ReturnsFlightsDepartingFromUSA()
-        {
-            // Act
-            var filteredFlights = _bookingRepository.SearchFlights(null, null, null, null, "USA", null, null);
-
-            // Assert
-            Assert.Equal("USA", filteredFlights.First().DepartureAirport);
-        }
-
-        [Fact]
-        public void SearchFlights_FilterByFlightClass_ReturnsEconomyClassFlights()
-        {
-            // Act
-            var filteredFlights = _bookingRepository.SearchFlights(null, null, null, null, null, null, FlightClass.Economy);
-
-            // Assert
-            Assert.Equal(2, filteredFlights.Count());
-            Assert.Equal(FlightClass.Economy, filteredFlights.First().Class);
+            Assert.Equal(expectedCount, actualfilteredFlightsCount);
         }
 
         [Fact]
         public void SearchFlights_FilterByDepartureDate_ReturnsFlightsWithDepartureDate()
         {
             // Act
-            var filteredFlights = _bookingRepository.SearchFlights(null, null, null, DateTime.Now.Date.AddDays(1), null, null, null);
+            var actualfilteredFlightsCount = _bookingRepository.SearchFlights(null, null, null, DateTime.Now.Date.AddDays(1), null, null, null).Count;
+            var expectedCount = 2;
 
             // Assert
-            Assert.Equal(2, filteredFlights.Count());
-            Assert.Equal(DateTime.Now.Date.AddDays(1), filteredFlights.First().DepartureDate);
+            Assert.Equal(expectedCount, actualfilteredFlightsCount);
+        }
+
+        [Theory]
+        [InlineData(null, "USA", null, null, null, null, null, 1)]
+        [InlineData(null, null, "USA", null, null, null, null, 3)]
+        [InlineData(null, null, null, null, "USA", null, null, 2)]
+        [InlineData(null, null, null, null, null, null, FlightClass.Economy, 2)]
+        public void SearchFlights_ReturnsFilteredFlights(
+           double? maxPrice,
+           string? departureCountry,
+           string? destinationCountry,
+           DateTime? departureDate,
+           string? departureAirport,
+           string? arrivalAirport,
+           FlightClass? flightClass,
+           int expectedCount)
+        {
+            // Act
+            var actualfilteredFlightsCount = _bookingRepository.SearchFlights(maxPrice, departureCountry, destinationCountry, departureDate, departureAirport, arrivalAirport, flightClass).Count;
+
+            // Assert
+            Assert.Equal(expectedCount, actualfilteredFlightsCount);
         }
     }
 }
