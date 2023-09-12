@@ -23,6 +23,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:
@@ -36,8 +37,8 @@ jobs:
     
     - name: List Files
       run: |
-        ls -R  # List files recursively in the current directory
-        find . -name "config.json"  # Search for config.json file
+        dir /s /b  # List files recursively in the current directory
+        where /r . config.json  # Search for config.json file
 
     - name: Test
-      run: dotnet test --no-restore --verbosity normal 
+      run: dotnet test --no-restore --verbosity normal
