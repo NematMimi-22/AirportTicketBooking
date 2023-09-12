@@ -2,11 +2,12 @@ name: build and test
 
 on:
   push:
+    branches: [ "master" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "master" ]
     paths:
-    - '**.cs'
-    - '**.csproj'
+      - '**.cs'
+      - '**.csproj'
 
 env:
   DOTNET_VERSION: '6.0.401' # The .NET SDK version to use
@@ -33,5 +34,10 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     
+    - name: List Files
+      run: |
+        ls -R  # List files recursively in the current directory
+        find . -name "config.json"  # Search for config.json file
+
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --no-restore --verbosity normal 
