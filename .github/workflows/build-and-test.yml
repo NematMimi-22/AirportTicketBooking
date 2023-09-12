@@ -19,11 +19,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ windows-latest]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
     - uses: actions/checkout@v3
-
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:
@@ -35,10 +34,5 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     
-    - name: List Files
-      run: |
-        dir /s /b  # List files recursively in the current directory
-        where /r . config.json  # Search for config.json file
-
     - name: Test
       run: dotnet test --no-restore --verbosity normal
