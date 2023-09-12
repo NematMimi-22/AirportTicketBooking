@@ -32,7 +32,7 @@ namespace AirportTicketBooking.Repositories
                     PassengerId = passenger.Id
                 };
                 bookingSystem.Bookings.Add(bookingDetails);
-                flight.NumberOfSeats = flight.NumberOfSeats - 1;
+                flight.NumberOfSeats = -- flight.NumberOfSeats;
                 Console.WriteLine("Flight successfully booked!");
                 return BookingStatus.SuccessfullyBooked;
             }
@@ -75,7 +75,7 @@ namespace AirportTicketBooking.Repositories
             {
                 bookingSystem.Bookings.Remove(bookingDetails);
             }
-            flight.NumberOfSeats = flight.NumberOfSeats ++;
+            flight.NumberOfSeats = ++ flight.NumberOfSeats;
             Console.WriteLine("Booking canceled successfully!");
         }
         public void ModifyBooking(Flight flight, BookingRepository Bookingrepository, Passenger passenger)
@@ -145,5 +145,6 @@ namespace AirportTicketBooking.Repositories
             }
             return filteredBookings;
         }
+
     }
 }
