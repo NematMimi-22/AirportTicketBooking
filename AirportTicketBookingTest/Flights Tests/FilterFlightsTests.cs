@@ -42,7 +42,7 @@ namespace AirportTicketBookingTest.Flights_Tests
         [InlineData("DepartureCountry", "UK")]
         [InlineData("DestinationCountry", "USA")]
         [InlineData("DepartureAirport", "LHR")]
-        [InlineData("ArrivalAirport", "New York")]
+        [InlineData("ArrivalAirport", "Palestine")]
         [InlineData("Class", FlightClass.Economy)]
         public void FilterBookings_FiltersByDifferentTypeOfFilters(string filterPropertyName, object filterValue)
         {
