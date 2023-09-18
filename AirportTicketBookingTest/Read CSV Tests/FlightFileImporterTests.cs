@@ -22,7 +22,7 @@ namespace AirportTicketBookingTest.Read_CSV_Tests
         public void ImportFlightsFromCsv_FileNotFound_ReturnsEmptyList()
         {
             // Arrange
-            var nonExistentFilePath = "C:\\Users\\Nemat\\Desktop\\Training\\test.csv";
+            var nonExistentFilePath = "C:\\Users\\Nemat\\Desktop\\Training\\invalid.csv";
             var importer = new FlightFileImporter(nonExistentFilePath);
 
             // Act
